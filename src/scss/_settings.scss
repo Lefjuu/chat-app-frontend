@@ -1,0 +1,230 @@
+.settings {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    height: 100vh;
+
+
+    &-container {
+        margin-top: 5rem;
+        display: flex;
+        background-color: $color-primary-2;
+        height: 90vh;
+        width: 60vw;
+        margin-left: 10rem;
+
+        @media only screen and (max-width:$bp-largest) {
+            display: block;
+        }
+
+        @media only screen and (max-width: $bp-small) {
+            width: 100%;
+            height: 100%;
+            margin: 0;
+        }
+    }
+
+    &-sidebar {
+        font-size: 1.4rem;
+        color: white;
+        cursor: pointer;
+        flex: 1;
+        border-right: 1px solid $color-grey-dark-1;
+
+        div {
+            padding: 1rem 2rem;
+
+            &:hover {
+                background-color: $color-second-1;
+            }
+        }
+    }
+
+    &-content {
+        flex: 3;
+        background-color: $color-primary-2;
+    }
+
+    &-avatar {
+        font-size: 1.6rem;
+        margin-left: 5rem;
+        padding: 2rem;
+        display: flex;
+        align-items: center;
+
+        @media only screen and (max-width: $bp-small) {
+            flex-direction: column;
+            margin-left: 0;
+        }
+
+        img {
+            margin-right: 4rem;
+            object-fit: cover;
+            height: 20rem;
+            width: 20rem;
+
+            @media only screen and (max-width: $bp-small) {
+                margin-right: 0rem;
+            }
+        }
+
+        div {
+            label {
+                color: $color-second-1;
+                cursor: pointer;
+                font-size: 1.4rem;
+                font-weight: bold;
+
+            }
+        }
+    }
+
+    &-body {
+        display: flex;
+        width: 100%;
+        padding: 2rem;
+        margin-bottom: 3rem;
+
+        @media only screen and (max-width:$bp-largest) {
+            display: block;
+            text-align: center;
+        }
+
+        &-term {
+            font-size: 1.4rem;
+            width: 45%;
+            font-weight: bold;
+
+            @media only screen and (max-width:$bp-largest) {
+                text-align: center;
+                width: 100%;
+                margin-bottom: 1rem;
+            }
+        }
+
+        &-comment {
+            font-size: 1.4rem;
+            width: 40%;
+            float: right;
+            margin-right: 30%;
+            color: $color-grey-light-2;
+            margin-top: -3rem;
+            margin-bottom: 3rem;
+
+            @media only screen and (max-width:$bp-largest) {
+                display: none;
+            }
+        }
+
+        &-input {
+            width: 60%;
+            height: 3.5rem;
+            margin-right: 30%;
+            background-color: inherit;
+            color: $color-white;
+            font-size: 1.4rem;
+            border: 1px solid $color-grey-dark-1;
+            padding: 3px;
+
+            @media only screen and (max-width:$bp-largest) {
+                margin-right: 0;
+            }
+        }
+
+        &-input:focus {
+            outline: none;
+        }
+
+        &-textarea {
+            width: 60%;
+            margin-right: 30%;
+            background-color: inherit;
+            color: $color-white;
+            font-size: 1.8rem;
+            border: 1px solid $color-grey-dark-1;
+            padding: 3px;
+            resize: none;
+            font-size: 1.3rem;
+
+            @media only screen and (max-width:$bp-largest) {
+                margin-right: 0;
+            }
+        }
+
+        &-textarea:focus {
+            outline: none;
+        }
+
+    }
+
+    &-button {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        margin-right: 5rem;
+        padding-bottom: 5rem;
+
+        button {
+            padding: 1rem 2rem;
+            background-color: $color-second-1;
+            cursor: pointer;
+
+            &:hover {
+                background-color: $color-second-2;
+            }
+        }
+
+        @media only screen and (max-width: $bp-largest) {
+            margin-right: 0rem;
+            margin-bottom: 2rem;
+        }
+
+        @media only screen and (max-width: $bp-small) {
+            margin-right: 0rem;
+        }
+    }
+}
+
+.password {
+
+    &-paragraph {
+        text-align: center;
+        padding: 0 4rem;
+        color: $color-grey-light-2;
+        font-size: 1.4rem;
+        margin-top: 5rem;
+    }
+
+    &-form {
+        font-size: 2rem;
+        padding-top: 2rem;
+        display: flex;
+        align-items: center;
+        flex-direction: column;
+    }
+
+    &-input {
+        height: 4rem;
+        width: 26rem;
+        margin-bottom: .5rem;
+        border-radius: 3px;
+        padding: 1rem;
+        margin-top: 3rem;
+        border: 1px solid $color-grey-dark-1;
+        background-color: inherit;
+        color: white;
+    }
+
+    &-btn {
+        width: 26rem;
+        border: none;
+        margin-top: 1rem;
+        margin: 2rem 4rem;
+        padding: 1rem 3rem;
+        background-color: $color-second-1;
+        color: $color-black;
+        cursor: pointer;
+    }
+}
