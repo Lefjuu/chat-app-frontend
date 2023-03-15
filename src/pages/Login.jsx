@@ -24,7 +24,7 @@ export default function Login() {
                 const response = await fetch(
                     `${process.env.REACT_APP_SERVER_HOSTNAME}`
                 )
-                setTimeout(() => {}, 100)
+                // setTimeout(() => {}, 100)
                 if (response) {
                     toast.success(
                         'Server is running, I can log in',

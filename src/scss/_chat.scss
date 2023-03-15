@@ -26,7 +26,6 @@
 
         @media only screen and (max-width:$bp-largest) {
             grid-template-columns: 18% 82%;
-
         }
 
         @media only screen and (max-width:$bp-largest) {
@@ -101,7 +100,6 @@
 
         @media only screen and (max-width:$bp-largest) {
             margin-right: 2rem;
-
         }
     }
 
@@ -115,6 +113,11 @@
         margin: 1.2rem;
         margin-bottom: 4rem;
         color: black;
+
+        @media only screen and (max-width:$bp-largest) {
+            margin: 0.4rem;
+            margin-bottom: 2rem;
+        }
 
         .wrapper {
             color: black;
@@ -136,12 +139,22 @@
             &:focus {
                 outline: none;
             }
+
+            @media only screen and (max-width:$bp-largest) {
+                padding: 0;
+
+            }
         }
 
         svg {
             font-size: 3rem;
             color: white;
             cursor: pointer;
+
+            @media only screen and (max-width:$bp-largest) {
+                right: 0;
+                margin-right: 10%;
+            }
         }
 
     }
@@ -178,6 +191,8 @@
 
             @media only screen and (max-width:$bp-largest) {
                 width: 80%;
+                padding: .6rem 0;
+                flex-direction: column;
             }
 
             .avatar {
@@ -191,12 +206,17 @@
             .username {
                 width: 80%;
 
-                @media only screen and (max-width:$bp-medium) {
-                    display: none;
-                }
+
 
                 h3 {
                     color: white;
+
+                    @media only screen and (max-width:$bp-large) {
+                        overflow: hidden;
+                        max-width: 100%;
+                        text-overflow: ellipsis;
+                        font-size: 1rem;
+                    }
                 }
 
                 p {
