@@ -66,8 +66,8 @@ const AppProvider = ({ children }) => {
             )
             return data.msg
         } catch (err) {
-            console.log(err.message)
-            return err.message
+            console.log(err)
+            return err.response.data.message
         }
     }
 

@@ -17,6 +17,8 @@ export default function Login() {
         theme: 'dark'
     }
     useEffect(() => {
+        // window.location.reload(false)
+
         const checkServerStatus = async () => {
             try {
                 const response = await fetch(
@@ -33,6 +35,7 @@ export default function Login() {
                 toast.error('Unable to connect to server', toastOptions)
             }
         }
+
         checkServerStatus()
         if (
             localStorage.getItem('chat-app-user') ||

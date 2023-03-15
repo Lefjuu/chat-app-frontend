@@ -34,7 +34,7 @@ export default function Register() {
 
     const toastOptions = {
         position: 'bottom-right',
-        autoClose: 8000,
+        autoClose: 5000,
         pauseOnHover: true,
         draggable: true,
         theme: 'dark'
@@ -85,7 +85,10 @@ export default function Register() {
             if (data) {
                 toast.error(data, toastOptions)
             } else {
-                navigate('/login')
+                toast.success('Account created, please log in', toastOptions)
+                setTimeout(() => {
+                    navigate('/login')
+                }, 5000)
             }
         }
     }

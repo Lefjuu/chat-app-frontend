@@ -12,8 +12,9 @@ export default function Chat() {
     const navigate = useNavigate()
     const [currentChat, setCurrentChat] = useState(undefined)
     const [conversations, setConversations] = useState([])
-    const [render, setRender] = useState(false)
+    const [render, setRender] = useState()
     const socket = useRef(io(`${process.env.REACT_APP_SOCKETIO_HOSTNAME}`))
+    const [getData, setGetData] = useState()
 
     const toastOptions = {
         position: 'bottom-right',
@@ -35,6 +36,7 @@ export default function Chat() {
             }
             const checkServerStatus = async () => {
                 await fetch(`${process.env.REACT_APP_SERVER_HOSTNAME}`)
+                setGetData(false)
             }
             checkServerStatus()
             setRender(true)
@@ -47,14 +49,14 @@ export default function Chat() {
             setConversations(res.data)
         }
         f()
-    }, [])
+    }, [getData])
 
     useEffect(() => {
         socket.current.emit('addUser', user._id)
         socket.current.on('getUsers', (users) => {
             console.log(users)
         })
-    }, [])
+    }, [getData])
 
     const handleChatChange = (chat) => {
         console.log(chat)

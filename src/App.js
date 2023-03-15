@@ -1,16 +1,16 @@
-import "./App.css"
-import "./css/main.css"
-import React from "react"
-import { BrowserRouter, Routes, Route } from "react-router-dom"
+import './App.css'
+import './css/main.css'
+import React from 'react'
+import { BrowserRouter, Routes, Route } from 'react-router-dom'
 // import SetAvatar from './components/SetAvatar'
 // import Chat from './pages/Chat'
-import Login from "./pages/Login"
-import Register from "./pages/Register"
-import Chat from "./pages/Chat"
-import Settings from "./pages/Settings"
-import ResetPasswordRequest from "./pages/Reset-Password"
-import ProtectedRoute from "./pages/ProtectedRoute"
-import NewPassword from "./pages/New-Password"
+import Login from './pages/Login'
+import Register from './pages/Register'
+import Chat from './pages/Chat'
+import Settings from './pages/Settings'
+import ResetPasswordRequest from './pages/Reset-Password'
+import ProtectedRoute from './pages/ProtectedRoute'
+import NewPassword from './pages/New-Password'
 export default function App() {
     return (
         <BrowserRouter>
@@ -31,7 +31,14 @@ export default function App() {
                         </ProtectedRoute>
                     }
                 />
-                <Route path="/" element={<Chat />} />
+                <Route
+                    path="/"
+                    element={
+                        <ProtectedRoute>
+                            <Chat />
+                        </ProtectedRoute>
+                    }
+                />
             </Routes>
         </BrowserRouter>
     )
