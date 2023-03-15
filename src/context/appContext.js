@@ -1,25 +1,25 @@
-import React, { useContext, useReducer } from "react"
-import axios from "axios"
+import React, { useContext, useReducer } from 'react'
+import axios from 'axios'
 
-const token = localStorage.getItem("chat-app-token")
-const user = localStorage.getItem("chat-app-user")
+const token = localStorage.getItem('chat-app-token')
+const user = localStorage.getItem('chat-app-user')
 
 const state = {
     isLoading: false,
     showAlert: false,
-    alertText: "",
-    alertType: "",
+    alertText: '',
+    alertType: '',
     user: user ? JSON.parse(user) : null,
     showAddPost: false,
     posts: [],
-    token: token,
+    token: token
 }
 
 const AppContext = React.createContext()
 
 const AppProvider = ({ children }) => {
     const authFetch = axios.create({
-        baseURL: `https://${process.env.REACT_APP_SERVER_HOSTNAME}/api`,
+        baseURL: `${process.env.REACT_APP_SERVER_HOSTNAME}/api`
     })
 
     authFetch.interceptors.request.use(
@@ -38,7 +38,7 @@ const AppProvider = ({ children }) => {
         },
         (err) => {
             if (err.response.status === 401) {
-                console.log("logout")
+                console.log('logout')
                 removeUserFromLocalStorage()
             }
             return Promise.reject(err)
@@ -46,22 +46,22 @@ const AppProvider = ({ children }) => {
     )
 
     const addUserToLocalStorage = (user) => {
-        localStorage.setItem("chat-app-user", JSON.stringify(user))
+        localStorage.setItem('chat-app-user', JSON.stringify(user))
     }
 
     const addTokenToLocalStorage = async (token) => {
-        localStorage.setItem("chat-app-token", token)
+        localStorage.setItem('chat-app-token', token)
     }
 
     const removeUserFromLocalStorage = () => {
-        localStorage.removeItem("chat-app-user")
-        localStorage.removeItem("chat-app-token")
+        localStorage.removeItem('chat-app-user')
+        localStorage.removeItem('chat-app-token')
     }
 
     const register = async (body) => {
         try {
             const { data } = await axios.post(
-                `https://${process.env.REACT_APP_SERVER_HOSTNAME}/api/auth/register`,
+                `${process.env.REACT_APP_SERVER_HOSTNAME}/api/auth/register`,
                 body
             )
             return data.msg
@@ -74,7 +74,7 @@ const AppProvider = ({ children }) => {
     const login = async (body) => {
         try {
             const { data } = await axios.post(
-                `https://${process.env.REACT_APP_SERVER_HOSTNAME}/api/auth/login`,
+                `${process.env.REACT_APP_SERVER_HOSTNAME}/api/auth/login`,
                 body
             )
             await addTokenToLocalStorage(data.token)
@@ -106,7 +106,7 @@ const AppProvider = ({ children }) => {
     const sendEmail = async (email) => {
         try {
             const data = await axios.post(`/user/forgot-password`, {
-                email,
+                email
             })
             return data
         } catch (err) {
@@ -121,7 +121,7 @@ const AppProvider = ({ children }) => {
         try {
             const { data } = await authFetch.get(`/user/all/${currentUser._id}`)
             if (!data) {
-                console.log("not found")
+                console.log('not found')
             }
             return data
         } catch (err) {
@@ -131,7 +131,7 @@ const AppProvider = ({ children }) => {
 
     const sendMessage = async (message) => {
         try {
-            const res = await authFetch.post("/message", message)
+            const res = await authFetch.post('/message', message)
             return res
         } catch (err) {
             console.log(err)
@@ -154,7 +154,7 @@ const AppProvider = ({ children }) => {
         try {
             const data = await authFetch.post(`/conversation`, {
                 senderId,
-                receiverId,
+                receiverId
             })
             return data
         } catch (err) {
@@ -184,7 +184,7 @@ const AppProvider = ({ children }) => {
     const changePassword = async ({ password, string }) => {
         try {
             const res = await axios.patch(`/auth/new-password/${string}`, {
-                password,
+                password
             })
             console.log(res)
             return res
@@ -208,7 +208,7 @@ const AppProvider = ({ children }) => {
                 getAllUsers,
                 removeUserFromLocalStorage,
                 sendEmail,
-                changePassword,
+                changePassword
             }}
         >
             {children}

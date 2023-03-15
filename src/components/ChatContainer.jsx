@@ -1,24 +1,24 @@
-import React, { useState, useEffect, useRef } from "react"
-import ChatInput from "./ChatInput"
-import Logout from "./Logout"
-import { v4 as uuidv4 } from "uuid"
-import axios from "axios"
-import { useAppContext } from "../context/appContext"
+import React, { useState, useEffect, useRef } from 'react'
+import ChatInput from './ChatInput'
+import Logout from './Logout'
+import { v4 as uuidv4 } from 'uuid'
+import axios from 'axios'
+import { useAppContext } from '../context/appContext'
 
 export default function ChatContainer({ currentChat, socket }) {
     const { user, createConversation, getConversation } = useAppContext()
     const { sendMessage } = useAppContext()
     const scrollRef = useRef()
     const [messages, setMessages] = useState([])
-    const [newMessage, setNewMessage] = useState("")
+    const [newMessage, setNewMessage] = useState('')
     const [arrivalMessage, setArrivalMessage] = useState(null)
 
     useEffect(() => {
-        socket.current.on("getMessage", (data) => {
+        socket.current.on('getMessage', (data) => {
             setArrivalMessage({
                 sender: data.senderId,
                 text: data.text,
-                createdAt: Date.now(),
+                createdAt: Date.now()
             })
         })
     }, [])
@@ -30,8 +30,8 @@ export default function ChatContainer({ currentChat, socket }) {
     }, [arrivalMessage])
 
     useEffect(() => {
-        socket.current.emit("addUser", user._id)
-        socket.current.on("getUsers", (users) => {})
+        socket.current.emit('addUser', user._id)
+        socket.current.on('getUsers', (users) => {})
     }, [user])
 
     useEffect(() => {
@@ -43,9 +43,11 @@ export default function ChatContainer({ currentChat, socket }) {
                         user._id,
                         currentChat._id
                     )
+                    console.log(conversation)
                     currentChat.conversationId = conversation
                     if (conversation !== undefined) {
                         const res = await getConversation(conversation)
+                        console.log(res)
                         setMessages(res.data)
                     }
                 } else {
@@ -65,24 +67,25 @@ export default function ChatContainer({ currentChat, socket }) {
         const message = {
             sender: user._id,
             text: msg,
-            conversationId: currentChat.conversationId,
+            conversationId: currentChat.conversationId
         }
         try {
             const res = await sendMessage(message)
-            socket.current.emit("sendMessage", {
+            socket.current.emit('sendMessage', {
                 senderId: user._id,
                 receiverId: currentChat._id,
-                text: msg,
+                text: msg
             })
+            console.log(res.data)
             setMessages([...messages, res.data])
-            setNewMessage("")
+            setNewMessage('')
         } catch (err) {
             console.log(err)
         }
     }
 
     useEffect(() => {
-        scrollRef.current?.scrollIntoView({ behavior: "smooth" })
+        scrollRef.current?.scrollIntoView({ behavior: 'smooth' })
     }, [messages])
 
     return (
@@ -106,8 +109,8 @@ export default function ChatContainer({ currentChat, socket }) {
                                 <div
                                     className={`message ${
                                         msg.sender === user._id
-                                            ? "sended"
-                                            : "received"
+                                            ? 'sended'
+                                            : 'received'
                                     }`}
                                 >
                                     <div className="content ">

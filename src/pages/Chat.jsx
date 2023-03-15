@@ -1,10 +1,11 @@
-import React, { useEffect, useState, useRef } from "react"
-import { useNavigate } from "react-router-dom"
-import { io } from "socket.io-client"
-import Contacts from "../components/Contacts"
-import Welcome from "../components/Welcome"
-import ChatContainer from "../components/ChatContainer"
-import { useAppContext } from "../context/appContext"
+import React, { useEffect, useState, useRef } from 'react'
+import { useNavigate } from 'react-router-dom'
+import { io } from 'socket.io-client'
+import Contacts from '../components/Contacts'
+import Welcome from '../components/Welcome'
+import ChatContainer from '../components/ChatContainer'
+import { useAppContext } from '../context/appContext'
+import { ToastContainer, toast } from 'react-toastify'
 
 export default function Chat() {
     const { user, getConversations } = useAppContext()
@@ -12,18 +13,30 @@ export default function Chat() {
     const [currentChat, setCurrentChat] = useState(undefined)
     const [conversations, setConversations] = useState([])
     const [render, setRender] = useState(false)
-    const socket = useRef(io(`ws://${process.env.REACT_APP_SERVER_HOSTNAME}`))
+    const socket = useRef(io(`${process.env.REACT_APP_SOCKETIO_HOSTNAME}`))
+
+    const toastOptions = {
+        position: 'bottom-right',
+        autoClose: 8000,
+        pauseOnHover: true,
+        draggable: true,
+        theme: 'dark'
+    }
 
     useEffect(() => {
-        if (!localStorage.getItem("chat-app-user")) {
-            navigate("/login")
+        if (!localStorage.getItem('chat-app-user')) {
+            navigate('/login')
         } else if (
-            localStorage.getItem("chat-app-user") ||
-            localStorage.getItem("chat-app-token")
+            localStorage.getItem('chat-app-user') ||
+            localStorage.getItem('chat-app-token')
         ) {
             if (!user) {
                 window.location.reload(false)
             }
+            const checkServerStatus = async () => {
+                await fetch(`${process.env.REACT_APP_SERVER_HOSTNAME}`)
+            }
+            checkServerStatus()
             setRender(true)
         }
     }, [user, navigate])
@@ -37,8 +50,8 @@ export default function Chat() {
     }, [])
 
     useEffect(() => {
-        socket.current.emit("addUser", user._id)
-        socket.current.on("getUsers", (users) => {
+        socket.current.emit('addUser', user._id)
+        socket.current.on('getUsers', (users) => {
             console.log(users)
         })
     }, [])
@@ -68,6 +81,7 @@ export default function Chat() {
                     </div>
                 </div>
             )}
+            <ToastContainer />
         </>
     )
 }

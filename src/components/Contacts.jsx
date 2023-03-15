@@ -1,10 +1,10 @@
-import React, { useState, useEffect } from "react"
-import Logo from "../assets/shiba.png"
-import { useAppContext } from "../context/appContext"
-import { BiSearch } from "react-icons/bi"
-import SearchBar from "./Search"
-import { Link } from "react-router-dom"
-import moment from "moment/moment"
+import React, { useState, useEffect } from 'react'
+import Logo from '../assets/shiba.png'
+import { useAppContext } from '../context/appContext'
+import { BiSearch } from 'react-icons/bi'
+import SearchBar from './Search'
+import { Link } from 'react-router-dom'
+import moment from 'moment/moment'
 
 export default function Contacts({ contacts, changeChat }) {
     const { user, getAllUsers } = useAppContext()
@@ -15,7 +15,7 @@ export default function Contacts({ contacts, changeChat }) {
     }
 
     const [allUsers, setAllUsers] = useState([])
-    const [keyword, setKeyword] = useState("")
+    const [keyword, setKeyword] = useState('')
     const [sortedUsers, setSortedUsers] = useState([])
 
     const fetchStories = async () => {
@@ -50,7 +50,7 @@ export default function Contacts({ contacts, changeChat }) {
                     <BiSearch className="contracts-icon" />
                 </div>
                 <div className="contacts-content">
-                    {keyword !== "" &&
+                    {keyword !== '' &&
                         sortedUsers &&
                         sortedUsers.map((user, index) => {
                             return (
@@ -58,8 +58,8 @@ export default function Contacts({ contacts, changeChat }) {
                                     key={user._id}
                                     className={`contact ${
                                         index === currentSelected
-                                            ? "selected"
-                                            : ""
+                                            ? 'selected'
+                                            : ''
                                     }`}
                                     onClick={() =>
                                         changeCurrentChat(index, user)
@@ -74,15 +74,15 @@ export default function Contacts({ contacts, changeChat }) {
                                 </div>
                             )
                         })}
-                    {keyword === "" &&
+                    {keyword === '' &&
                         contacts.map((contact, index) => {
                             return (
                                 <div
                                     key={index}
                                     className={`contact ${
                                         index === currentSelected
-                                            ? "selected"
-                                            : ""
+                                            ? 'selected'
+                                            : ''
                                     }`}
                                     onClick={() =>
                                         changeCurrentChat(index, contact)
@@ -95,9 +95,11 @@ export default function Contacts({ contacts, changeChat }) {
                                         <h3>{contact.username}</h3>
                                         <p>{contact.lastMessageText}</p>
                                         <p>
-                                            {moment(contact.lastMessage)
-                                                .startOf("minutes")
-                                                .fromNow()}
+                                            {contact.lastMessageText
+                                                ? moment(contact.lastMessage)
+                                                      .startOf('minutes')
+                                                      .fromNow()
+                                                : 'start chat!'}
                                         </p>
                                     </div>
                                 </div>

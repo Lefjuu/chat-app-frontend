@@ -1,27 +1,44 @@
-import React, { useState, useEffect } from "react"
-import { useNavigate, Link } from "react-router-dom"
-import Logo from "../assets/shiba.png"
-import { ToastContainer, toast } from "react-toastify"
-import "react-toastify/dist/ReactToastify.css"
-import { useAppContext } from "../context/appContext"
+import React, { useState, useEffect } from 'react'
+import { useNavigate, Link } from 'react-router-dom'
+import Logo from '../assets/shiba.png'
+import { ToastContainer, toast } from 'react-toastify'
+import 'react-toastify/dist/ReactToastify.css'
+import { useAppContext } from '../context/appContext'
 export default function Login() {
     const { login } = useAppContext()
     const navigate = useNavigate()
-    const [values, setValues] = useState({ login: "", password: "" })
+    const [values, setValues] = useState({ login: '', password: '' })
 
     const toastOptions = {
-        position: "bottom-right",
+        position: 'bottom-right',
         autoClose: 8000,
         pauseOnHover: true,
         draggable: true,
-        theme: "dark",
+        theme: 'dark'
     }
     useEffect(() => {
+        const checkServerStatus = async () => {
+            try {
+                const response = await fetch(
+                    `${process.env.REACT_APP_SERVER_HOSTNAME}`
+                )
+                if (response) {
+                    toast.success(
+                        'Server is running, I can log in',
+                        toastOptions
+                    )
+                }
+            } catch (error) {
+                console.error(error)
+                toast.error('Unable to connect to server', toastOptions)
+            }
+        }
+        checkServerStatus()
         if (
-            localStorage.getItem("chat-app-user") ||
-            localStorage.getItem("chat-app-token")
+            localStorage.getItem('chat-app-user') ||
+            localStorage.getItem('chat-app-token')
         ) {
-            navigate("/")
+            navigate('/')
         }
     }, [])
 
@@ -31,11 +48,11 @@ export default function Login() {
 
     const validateForm = () => {
         const { login, password } = values
-        if (login === "") {
-            toast.error("Email or Username is required.", toastOptions)
+        if (login === '') {
+            toast.error('Email or Username is required.', toastOptions)
             return false
-        } else if (password === "") {
-            toast.error("Password is required.", toastOptions)
+        } else if (password === '') {
+            toast.error('Password is required.', toastOptions)
             return false
         }
         return true
@@ -48,7 +65,7 @@ export default function Login() {
             if (data) {
                 toast.error(data.response.data.message, toastOptions)
             } else {
-                navigate("/")
+                navigate('/')
             }
         }
     }
@@ -77,12 +94,12 @@ export default function Login() {
                     <button type="submit">Log In</button>
                     <Link
                         to="/reset-password"
-                        style={{ textDecoration: "none" }}
+                        style={{ textDecoration: 'none' }}
                     >
                         <p className="login-btn">Forgot password?</p>
                     </Link>
                     <span>
-                        Don't have an account ?{" "}
+                        Don't have an account ?{' '}
                         <Link to="/register">Create One.</Link>
                     </span>
                 </form>
