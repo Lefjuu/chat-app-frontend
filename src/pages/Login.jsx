@@ -20,29 +20,40 @@ export default function Login() {
         // window.location.reload(false)
 
         const checkServerStatus = async () => {
-            try {
-                const response = await fetch(
-                    `${process.env.REACT_APP_SERVER_HOSTNAME}`
-                )
-                // setTimeout(() => {}, 100)
-                if (response) {
-                    toast.success(
-                        'Server is running, I can log in',
-                        toastOptions
-                    )
-                }
-                checkServerStatus()
-                if (
-                    localStorage.getItem('chat-app-user') ||
-                    localStorage.getItem('chat-app-token')
-                ) {
-                    navigate('/')
-                }
-            } catch (error) {
-                console.error(error)
-                toast.error('Unable to connect to server', toastOptions)
+            if (
+                localStorage.getItem('chat-app-user') ||
+                localStorage.getItem('chat-app-token')
+            ) {
+                navigate('/')
             }
+            // try {
+            toast.info('please wait until the server starts up', toastOptions)
+
+            let counter = 0
+
+            const intervalId = setInterval(async () => {
+                if (counter < 5) {
+                    await fetch(`${process.env.REACT_APP_SERVER_HOSTNAME}`)
+                        .then((res) => {
+                            if (res) {
+                                toast.success(
+                                    'Server is running, I can log in',
+                                    toastOptions
+                                )
+                                clearInterval(intervalId)
+                            }
+                        })
+                        .catch(() => {
+                            toast.error('connecting...', toastOptions)
+                        })
+                    counter++
+                } else {
+                    clearInterval(intervalId)
+                    toast.error('Unable to connect to server', toastOptions)
+                }
+            }, 8500)
         }
+        checkServerStatus()
     }, [])
 
     const handleChange = (e) => {
