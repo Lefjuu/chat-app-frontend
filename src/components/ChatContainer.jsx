@@ -2,7 +2,6 @@ import React, { useState, useEffect, useRef } from 'react'
 import ChatInput from './ChatInput'
 import Logout from './Logout'
 import { v4 as uuidv4 } from 'uuid'
-import axios from 'axios'
 import { useAppContext } from '../context/appContext'
 
 export default function ChatContainer({ currentChat, socket }) {

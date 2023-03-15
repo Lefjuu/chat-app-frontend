@@ -1,4 +1,4 @@
-import React, { useContext, useReducer } from 'react'
+import React, { useContext } from 'react'
 import axios from 'axios'
 
 const token = localStorage.getItem('chat-app-token')

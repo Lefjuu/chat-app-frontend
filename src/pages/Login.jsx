@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react'
-import { useNavigate, Link } from 'react-router-dom'
+import { useNavigate, Link, Navigate } from 'react-router-dom'
 import Logo from '../assets/shiba.png'
 import { ToastContainer, toast } from 'react-toastify'
 import 'react-toastify/dist/ReactToastify.css'
@@ -17,16 +17,13 @@ export default function Login() {
         theme: 'dark'
     }
     useEffect(() => {
-        // window.location.reload(false)
-
         const checkServerStatus = async () => {
             if (
                 localStorage.getItem('chat-app-user') ||
                 localStorage.getItem('chat-app-token')
             ) {
-                navigate('/')
+                ;<Navigate to="/" replace={true} />
             }
-            // try {
             toast.info('please wait until the server starts up', toastOptions)
 
             let counter = 0

@@ -5,7 +5,7 @@ import Contacts from '../components/Contacts'
 import Welcome from '../components/Welcome'
 import ChatContainer from '../components/ChatContainer'
 import { useAppContext } from '../context/appContext'
-import { ToastContainer, toast } from 'react-toastify'
+import { ToastContainer } from 'react-toastify'
 
 export default function Chat() {
     const { user, getConversations } = useAppContext()
@@ -16,14 +16,6 @@ export default function Chat() {
     const socket = useRef(io(`${process.env.REACT_APP_SOCKETIO_HOSTNAME}`))
     const [getData, setGetData] = useState()
 
-    const toastOptions = {
-        position: 'bottom-right',
-        autoClose: 8000,
-        pauseOnHover: true,
-        draggable: true,
-        theme: 'dark'
-    }
-
     useEffect(() => {
         if (!localStorage.getItem('chat-app-user')) {
             navigate('/login')
@@ -32,7 +24,9 @@ export default function Chat() {
             localStorage.getItem('chat-app-token')
         ) {
             if (!user) {
-                window.location.reload(false)
+                setTimeout(() => {
+                    window.location.reload(false)
+                }, 1000)
             }
             const checkServerStatus = async () => {
                 await fetch(`${process.env.REACT_APP_SERVER_HOSTNAME}`)
