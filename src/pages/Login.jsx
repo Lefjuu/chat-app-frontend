@@ -24,24 +24,24 @@ export default function Login() {
                 const response = await fetch(
                     `${process.env.REACT_APP_SERVER_HOSTNAME}`
                 )
+                setTimeout(() => {}, 100)
                 if (response) {
                     toast.success(
                         'Server is running, I can log in',
                         toastOptions
                     )
                 }
+                checkServerStatus()
+                if (
+                    localStorage.getItem('chat-app-user') ||
+                    localStorage.getItem('chat-app-token')
+                ) {
+                    navigate('/')
+                }
             } catch (error) {
                 console.error(error)
                 toast.error('Unable to connect to server', toastOptions)
             }
-        }
-
-        checkServerStatus()
-        if (
-            localStorage.getItem('chat-app-user') ||
-            localStorage.getItem('chat-app-token')
-        ) {
-            navigate('/')
         }
     }, [])
 
