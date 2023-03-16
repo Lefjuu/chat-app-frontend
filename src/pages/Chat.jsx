@@ -14,7 +14,7 @@ export default function Chat() {
     const [conversations, setConversations] = useState([])
     const [render, setRender] = useState()
     const socket = useRef(io(`https://chat-app-backend-utsp.onrender.com`))
-    // const socket = useRef(io(`${process.env.REACT_APP_SOCKETIO_HOSTNAME}`))
+    // const socket = useRef(io(`${process.env.REACT_APP_SERVER_HOSTNAME}`))
     const [getData, setGetData] = useState()
 
     useEffect(() => {
