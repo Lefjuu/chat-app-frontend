@@ -45,11 +45,11 @@
   text-transform: uppercase;
   text-align: center;
 }
-@media only screen and (max-width: 75em) {
+@media only screen and (max-width: 47.5em) {
   .login form {
     width: 100%;
     background-color: inherit;
-    padding: 2rem 4rem;
+    padding: 2rem 5rem;
   }
 }
 .login input {
@@ -125,11 +125,11 @@
   padding: 5rem 8rem;
   width: 50rem;
 }
-@media only screen and (max-width: 75em) {
+@media only screen and (max-width: 47.5em) {
   .register form {
     width: 100%;
     background-color: inherit;
-    padding: 2rem 4rem;
+    padding: 2rem 5rem;
   }
 }
 .register input {
