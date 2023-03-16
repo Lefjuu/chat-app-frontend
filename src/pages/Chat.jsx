@@ -13,7 +13,7 @@ export default function Chat() {
     const [currentChat, setCurrentChat] = useState(undefined)
     const [conversations, setConversations] = useState([])
     const [render, setRender] = useState()
-    const socket = useRef(io(`ws://chat-app-backend-utsp.onrender.com`))
+    const socket = useRef(io(`https://chat-app-backend-utsp.onrender.com`))
     // const socket = useRef(io(`${process.env.REACT_APP_SOCKETIO_HOSTNAME}`))
     const [getData, setGetData] = useState()
 

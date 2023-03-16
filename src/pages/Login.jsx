@@ -77,6 +77,7 @@ export default function Login() {
             if (data) {
                 toast.error(data.response.data.message, toastOptions)
             } else {
+                ;<Navigate to="/" replace={true} />
                 navigate('/')
             }
         }
