@@ -19,7 +19,8 @@ const AppContext = React.createContext()
 
 const AppProvider = ({ children }) => {
     const authFetch = axios.create({
-        baseURL: `${process.env.REACT_APP_SERVER_HOSTNAME}/api`
+        // baseURL: `${process.env.REACT_APP_SERVER_HOSTNAME}/api`
+        baseURL: `https://chat-app-backend-utsp.onrender.com/api`
     })
 
     authFetch.interceptors.request.use(
@@ -61,7 +62,8 @@ const AppProvider = ({ children }) => {
     const register = async (body) => {
         try {
             const { data } = await axios.post(
-                `${process.env.REACT_APP_SERVER_HOSTNAME}/api/auth/register`,
+                // `${process.env.REACT_APP_SERVER_HOSTNAME}/api/auth/register`,
+                `https://chat-app-backend-utsp.onrender.com/api/auth/register`,
                 body
             )
             return data.msg
@@ -74,7 +76,8 @@ const AppProvider = ({ children }) => {
     const login = async (body) => {
         try {
             const { data } = await axios.post(
-                `${process.env.REACT_APP_SERVER_HOSTNAME}/api/auth/login`,
+                // `${process.env.REACT_APP_SERVER_HOSTNAME}/api/auth/login`,
+                `https://chat-app-backend-utsp.onrender.com/api/auth/login`,
                 body
             )
             await addTokenToLocalStorage(data.token)

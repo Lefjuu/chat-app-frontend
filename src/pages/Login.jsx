@@ -28,9 +28,10 @@ export default function Login() {
 
             let counter = 0
 
-            const intervalId = setInterval(async () => {
+            const intervalId = setInterval(() => {
                 if (counter < 5) {
-                    await fetch(`${process.env.REACT_APP_SERVER_HOSTNAME}`)
+                    // fetch(`${process.env.REACT_APP_SERVER_HOSTNAME}`)
+                    fetch('https://chat-app-backend-utsp.onrender.com')
                         .then((res) => {
                             if (res) {
                                 toast.success(

@@ -13,7 +13,8 @@ export default function Chat() {
     const [currentChat, setCurrentChat] = useState(undefined)
     const [conversations, setConversations] = useState([])
     const [render, setRender] = useState()
-    const socket = useRef(io(`${process.env.REACT_APP_SOCKETIO_HOSTNAME}`))
+    const socket = useRef(io(`ws://chat-app-backend-utsp.onrender.com`))
+    // const socket = useRef(io(`${process.env.REACT_APP_SOCKETIO_HOSTNAME}`))
     const [getData, setGetData] = useState()
 
     useEffect(() => {
@@ -29,7 +30,9 @@ export default function Chat() {
                 }, 1000)
             }
             const checkServerStatus = async () => {
-                await fetch(`${process.env.REACT_APP_SERVER_HOSTNAME}`)
+                // await fetch(`${process.env.REACT_APP_SERVER_HOSTNAME}`)
+                await fetch(`https://chat-app-backend-utsp.onrender.com`)
+
                 setGetData(false)
             }
             checkServerStatus()

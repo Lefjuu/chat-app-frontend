@@ -13,7 +13,8 @@ export default function Register() {
         const checkServerStatus = async () => {
             try {
                 const response = await fetch(
-                    `${process.env.REACT_APP_SERVER_HOSTNAME}`
+                    // `${process.env.REACT_APP_SERVER_HOSTNAME}`
+                    `https://chat-app-backend-utsp.onrender.com`
                 )
                 if (response) {
                     toast.success(
