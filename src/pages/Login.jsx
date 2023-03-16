@@ -113,7 +113,7 @@ export default function Login() {
                         <p className="login-btn">Forgot password?</p>
                     </Link>
                     <span>
-                        Don't have an account ?{' '}
+                        Don't have an account ?
                         <Link to="/register">Create One.</Link>
                     </span>
                 </form>

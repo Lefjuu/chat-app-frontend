@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react'
-import { useNavigate, Link } from 'react-router-dom'
+import { useNavigate, Link, Navigate } from 'react-router-dom'
 import Logo from '../assets/shiba.png'
 import { ToastContainer, toast } from 'react-toastify'
 import 'react-toastify/dist/ReactToastify.css'
@@ -28,8 +28,11 @@ export default function Register() {
             }
         }
         checkServerStatus()
-        if (token && user) {
-            navigate('/')
+        if (
+            localStorage.getItem('chat-app-user') ||
+            localStorage.getItem('chat-app-token')
+        ) {
+            ;<Navigate to="/" replace={true} />
         }
     }, [])
 
