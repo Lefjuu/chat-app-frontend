@@ -163,7 +163,7 @@ const AppProvider = ({ children }) => {
             return data
         } catch (err) {
             console.log(err)
-            return err.response.data.conversationId
+            return err
         }
     }
 
