@@ -95,6 +95,7 @@ const AppProvider = ({ children }) => {
         try {
             const data = await axios.post(
                 `https://chat-app-backend-utsp.onrender.com/api/user/forgot-password`,
+                // `${process.env.REACT_APP_SERVER_HOSTNAME}/api/user/forgot-password`,
                 {
                     email
                 }
@@ -110,6 +111,7 @@ const AppProvider = ({ children }) => {
         try {
             const res = await axios.patch(
                 `https://chat-app-backend-utsp.onrender.com/api/auth/new-password/${string}`,
+                // `${process.env.REACT_APP_SERVER_HOSTNAME}/api/auth/new-password/${string}`,
                 {
                     password
                 }
