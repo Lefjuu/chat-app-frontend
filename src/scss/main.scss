@@ -1,0 +1,43 @@
+@import "./variables";
+@import "./login";
+@import "./register";
+@import "./chat";
+@import "./settings";
+@import "./password";
+
+*,
+*::before,
+*::after {
+    margin: 0;
+    padding: 0;
+    box-sizing: inherit;
+}
+
+html {
+    box-sizing: border-box;
+    font-size: 62.5%; // 1rem = 10px
+    background-color: $color-primary-1;
+}
+
+body {
+    font-family: $font-primary;
+    font-weight: 300;
+    line-height: 1.6;
+}
+
+
+// .home {
+//     display: flex;
+//     width: 100%;
+//     justify-content: center;
+//     margin-left: 10rem;
+
+//     @media only screen and (max-width: $bp-largest) {
+//         display: block;
+//         margin-left: 0;
+//     }
+// }
+
+.Toastify__toast-body {
+    font-size: 1.4rem !important;
+}

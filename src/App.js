@@ -1,25 +1,45 @@
-import logo from './logo.svg';
-import './App.css';
+import './App.css'
+import './css/main.css'
+import React from 'react'
+import { BrowserRouter, Routes, Route } from 'react-router-dom'
+// import SetAvatar from './components/SetAvatar'
+// import Chat from './pages/Chat'
+import Login from './pages/Login'
+import Register from './pages/Register'
+import Chat from './pages/Chat'
+import Settings from './pages/Settings'
+import ResetPasswordRequest from './pages/Reset-Password'
+import ProtectedRoute from './pages/ProtectedRoute'
+import NewPassword from './pages/New-Password'
+export default function App() {
+    return (
+        <BrowserRouter>
+            <Routes>
+                <Route
+                    path="/reset-password"
+                    element={<ResetPasswordRequest />}
+                />
+                <Route path="/new-password/:string" element={<NewPassword />} />
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+                <Route path="/register" element={<Register />} />
+                <Route path="/login" element={<Login />} />
+                <Route
+                    path="/settings"
+                    element={
+                        <ProtectedRoute>
+                            <Settings />
+                        </ProtectedRoute>
+                    }
+                />
+                <Route
+                    path="/"
+                    element={
+                        <ProtectedRoute>
+                            <Chat />
+                        </ProtectedRoute>
+                    }
+                />
+            </Routes>
+        </BrowserRouter>
+    )
 }
-
-export default App;
