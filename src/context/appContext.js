@@ -91,6 +91,36 @@ const AppProvider = ({ children }) => {
         }
     }
 
+    const sendEmail = async (email) => {
+        try {
+            const data = await axios.post(
+                `https://chat-app-backend-utsp.onrender.com/api/user/forgot-password`,
+                {
+                    email
+                }
+            )
+            return data
+        } catch (err) {
+            console.log(err)
+            return err
+        }
+    }
+
+    const changePassword = async ({ password, string }) => {
+        try {
+            const res = await axios.patch(
+                `https://chat-app-backend-utsp.onrender.com/api/auth/new-password/${string}`,
+                {
+                    password
+                }
+            )
+            console.log(res)
+            return res
+        } catch (err) {
+            return err
+        }
+    }
+
     const updateUser = async (updatedUser) => {
         let currentUser = JSON.parse(user)
 
@@ -104,18 +134,6 @@ const AppProvider = ({ children }) => {
         } catch (err) {
             console.log(err)
             return err.response
-        }
-    }
-
-    const sendEmail = async (email) => {
-        try {
-            const data = await axios.post(`/user/forgot-password`, {
-                email
-            })
-            return data
-        } catch (err) {
-            console.log(err)
-            return err
         }
     }
 
@@ -182,18 +200,6 @@ const AppProvider = ({ children }) => {
             return data
         } catch (err) {
             console.log(err)
-        }
-    }
-
-    const changePassword = async ({ password, string }) => {
-        try {
-            const res = await axios.patch(`/auth/new-password/${string}`, {
-                password
-            })
-            console.log(res)
-            return res
-        } catch (err) {
-            return err
         }
     }
 
