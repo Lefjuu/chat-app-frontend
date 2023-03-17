@@ -42,12 +42,18 @@ export default function ChatContainer({ currentChat, socket }) {
                         user._id,
                         currentChat._id
                     )
-                    console.log(conversation)
-                    currentChat.conversationId = conversation
-                    if (conversation !== undefined) {
-                        const res = await getConversation(conversation)
-                        console.log(res)
+                    if (conversation.data !== undefined) {
+                        const res = await getConversation(conversation.data._id)
+                        currentChat.conversationId = conversation.data._id
                         setMessages(res.data)
+                    } else if (conversation.response.status) {
+                        currentChat.conversationId =
+                            conversation.response.data.conversationId
+                        const res = await getConversation(
+                            conversation.response.data.conversationId
+                        )
+                        setMessages(res.data)
+                    } else {
                     }
                 } else {
                     const res = await getConversation(
