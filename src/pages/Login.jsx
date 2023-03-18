@@ -35,7 +35,7 @@ export default function Login() {
                         .then((res) => {
                             if (res) {
                                 toast.success(
-                                    'Server is running, I can log in',
+                                    'Server is running, You can log in',
                                     toastOptions
                                 )
                                 clearInterval(intervalId)

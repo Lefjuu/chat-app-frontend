@@ -18,7 +18,7 @@ export default function Register() {
                 )
                 if (response) {
                     toast.success(
-                        'Server is running, I can sign in',
+                        'Server is running, You can sign in',
                         toastOptions
                     )
                 }
