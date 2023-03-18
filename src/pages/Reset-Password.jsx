@@ -1,38 +1,37 @@
-import { useState } from "react"
-import { Link } from "react-router-dom"
-import { useAppContext } from "../context/appContext"
-import Logo from "../assets/shiba.png"
-import { ToastContainer, toast } from "react-toastify"
+import { useState } from 'react'
+import { Link } from 'react-router-dom'
+import { useAppContext } from '../context/appContext'
+import Logo from '../assets/shiba.png'
+import { ToastContainer, toast } from 'react-toastify'
 
 const ResetPasswordRequest = () => {
     const { sendEmail } = useAppContext()
 
-    const [email, setEmail] = useState("")
+    const [email, setEmail] = useState('')
 
     const handleChange = (e) => {
         setEmail(e.target.value)
     }
 
     const toastOptions = {
-        position: "bottom-right",
+        position: 'bottom-right',
         autoClose: 5000,
         pauseOnHover: true,
         draggable: true,
-        theme: "dark",
+        theme: 'dark'
     }
 
     const onSubmit = async (e) => {
         e.preventDefault()
         if (!email) {
-            toast.error("Email is required.", toastOptions)
+            toast.error('Email is required.', toastOptions)
             return
         }
         const res = await sendEmail(email)
-        console.log(res)
         if (res.status !== 200 && res.response.status === 500) {
             toast.error(res.response.data.message, toastOptions)
         } else {
-            toast.success("Email Sended! Check your e-mail", toastOptions)
+            toast.success('Email Sended! Check your e-mail', toastOptions)
         }
     }
 
