@@ -84,6 +84,40 @@ export default function Login() {
         }
     }
 
+    const guest1 = {
+        login: 'guest 1',
+        password: '123456'
+    }
+
+    const guest2 = {
+        login: 'guest 2',
+        password: '123456'
+    }
+
+    const handleSubmitGuest1 = async (e) => {
+        e.preventDefault()
+        const data = await login(guest1)
+        if (data) {
+            toast.error(data.response.data.message, toastOptions)
+        } else {
+            if (window.location.pathname === '/login') {
+                window.location.pathname = '/'
+            }
+        }
+    }
+
+    const handleSubmitGuest2 = async (e) => {
+        e.preventDefault()
+        const data = await login(guest2)
+        if (data) {
+            toast.error(data.response.data.message, toastOptions)
+        } else {
+            if (window.location.pathname === '/login') {
+                window.location.pathname = '/'
+            }
+        }
+    }
+
     return (
         <>
             <div className="login">
@@ -112,8 +146,16 @@ export default function Login() {
                     >
                         <p className="login-btn">Forgot password?</p>
                     </Link>
+                    <div className="guest">
+                        <button onClick={(e) => handleSubmitGuest1(e)}>
+                            login as guest 1
+                        </button>
+                        <button onClick={(e) => handleSubmitGuest2(e)}>
+                            login as guest 2
+                        </button>
+                    </div>
                     <span>
-                        Don't have an account ?
+                        Don't have an account?{' '}
                         <Link to="/register">Create One.</Link>
                     </span>
                 </form>

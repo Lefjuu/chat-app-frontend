@@ -39,7 +39,6 @@ const AppProvider = ({ children }) => {
         },
         (err) => {
             if (err.response.status === 401) {
-                console.log('logout')
                 removeUserFromLocalStorage()
             }
             return Promise.reject(err)
@@ -80,7 +79,6 @@ const AppProvider = ({ children }) => {
                 `https://chat-app-backend-utsp.onrender.com/api/auth/login`,
                 body
             )
-            console.log(data)
             await addTokenToLocalStorage(data.token)
             addUserToLocalStorage(data.user)
             if (data.msg) return data.msg
@@ -94,8 +92,8 @@ const AppProvider = ({ children }) => {
     const sendEmail = async (email) => {
         try {
             const data = await axios.post(
-                `https://chat-app-backend-utsp.onrender.com/api/user/forgot-password`,
                 // `${process.env.REACT_APP_SERVER_HOSTNAME}/api/user/forgot-password`,
+                `https://chat-app-backend-utsp.onrender.com/api/user/forgot-password`,
                 {
                     email
                 }
@@ -110,8 +108,8 @@ const AppProvider = ({ children }) => {
     const changePassword = async ({ password, string }) => {
         try {
             const res = await axios.patch(
-                `https://chat-app-backend-utsp.onrender.com/api/auth/new-password/${string}`,
                 // `${process.env.REACT_APP_SERVER_HOSTNAME}/api/auth/new-password/${string}`,
+                `https://chat-app-backend-utsp.onrender.com/api/auth/new-password/${string}`,
                 {
                     password
                 }
