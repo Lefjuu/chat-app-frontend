@@ -81,7 +81,6 @@ export default function ChatContainer({ currentChat, socket }) {
                 receiverId: currentChat._id,
                 text: msg
             })
-            console.log(res.data)
             setMessages([...messages, res.data])
             setNewMessage('')
         } catch (err) {

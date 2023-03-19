@@ -1,16 +1,16 @@
-import { useState } from "react"
-import { useAppContext } from "../context/appContext"
-import { ToastContainer, toast } from "react-toastify"
+import { useState } from 'react'
+import { useAppContext } from '../context/appContext'
+import { ToastContainer, toast } from 'react-toastify'
 
 const Settings = () => {
     const { user, updateUser, sendEmail } = useAppContext()
 
     const toastOptions = {
-        position: "bottom-right",
+        position: 'bottom-right',
         autoClose: 5000,
         pauseOnHover: true,
         draggable: true,
-        theme: "dark",
+        theme: 'dark'
     }
 
     const [username, setUsername] = useState(user?.username)
@@ -40,7 +40,7 @@ const Settings = () => {
     const onSubmit = async (e) => {
         e.preventDefault()
         if (!username) {
-            toast.error("Username is required.", toastOptions)
+            toast.error('Username is required.', toastOptions)
             return
         }
         const updatedUser = { img: file, username }
@@ -48,7 +48,7 @@ const Settings = () => {
         if (res.data.code === 11000) {
             toast.error(res.data.message, toastOptions)
         } else {
-            toast.success("User updated!", toastOptions)
+            toast.success('User updated!', toastOptions)
         }
 
         setTimeout(() => {
@@ -59,17 +59,16 @@ const Settings = () => {
     const onSubmitReset = async (e) => {
         e.preventDefault()
         if (!user.email) {
-            toast.error(" Email is required.", toastOptions)
+            toast.error(' Email is required.', toastOptions)
             return
         }
         const res = await sendEmail({
-            email: user.email,
+            email: user.email
         })
-        console.log(res.response.data.message)
         if (res.response.status === 500) {
             toast.error(res.response.data.message, toastOptions)
         } else {
-            toast.success("Email Sended! Check your e-mail", toastOptions)
+            toast.success('Email Sended! Check your e-mail', toastOptions)
         }
     }
 
@@ -112,7 +111,7 @@ const Settings = () => {
                                 </div>
                                 <input
                                     className="settings-body-input"
-                                    value={username || ""}
+                                    value={username || ''}
                                     onChange={(e) =>
                                         handleChange(e.target.value)
                                     }

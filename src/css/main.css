@@ -54,7 +54,7 @@
 }
 .login form div {
   display: flex;
-  align-items: end;
+  align-items: center;
   justify-content: center;
 }
 .login form div button {
