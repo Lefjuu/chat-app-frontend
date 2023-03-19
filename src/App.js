@@ -15,6 +15,7 @@ export default function App() {
     return (
         <BrowserRouter>
             <Routes>
+                <Route path="/login" element={<Login />} />
                 <Route
                     path="/reset-password"
                     element={<ResetPasswordRequest />}
@@ -22,7 +23,6 @@ export default function App() {
                 <Route path="/newPassword/:string" element={<NewPassword />} />
 
                 <Route path="/register" element={<Register />} />
-                <Route path="/login" element={<Login />} />
                 <Route
                     path="/settings"
                     element={
