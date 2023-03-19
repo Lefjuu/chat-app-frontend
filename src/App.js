@@ -19,7 +19,7 @@ export default function App() {
                     path="/reset-password"
                     element={<ResetPasswordRequest />}
                 />
-                <Route path="/new-password/:string" element={<NewPassword />} />
+                <Route path="/newPassword/:string" element={<NewPassword />} />
 
                 <Route path="/register" element={<Register />} />
                 <Route path="/login" element={<Login />} />
