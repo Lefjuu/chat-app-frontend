@@ -85,12 +85,12 @@ export default function Login() {
     }
 
     const guest1 = {
-        login: 'guest 1',
+        login: 'guest1',
         password: '123456'
     }
 
     const guest2 = {
-        login: 'guest 2',
+        login: 'guest2',
         password: '123456'
     }
 
