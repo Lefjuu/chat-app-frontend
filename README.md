@@ -1,5 +1,8 @@
 ## Welcome to Chat application
 
+link to app: https://chat-app.karol-legut.website
+It may take a while to get started, it's free hosting.
+
 Chat app is a dynamic web application with which we can communicate with other users without refreshing the page using socket.io. The stack is made up of:
 
 - Node.js : JavaScript runtime environment – lets you implement your application back-end in JavaScript
